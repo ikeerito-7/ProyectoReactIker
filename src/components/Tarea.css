@@ -1,0 +1,64 @@
+.tarea {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    margin-top: 5px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tarea.completada {
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+  
+  .tarea input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  .tarea button {
+    border: none;
+    cursor: pointer;
+    background: none;
+    font-size: 1.2rem;
+  }
+  
+  .tarea button.actualizar {
+    background-color: #00FF00;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .tarea button.actualizar:hover {
+    background-color: #7EFF2A;
+  }
+  
+  .tarea button.editar {
+    background-color: transparent;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .tarea button.editar:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .tarea button.eliminar {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+  }
+  
+  .tarea button.eliminar:hover {
+    color: red;
+  }
+  
