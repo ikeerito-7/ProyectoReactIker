@@ -1,64 +1,97 @@
+/* --- Tarea.css --- */
 .tarea {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: white;
-    margin-top: 5px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .tarea.completada {
-    text-decoration: line-through;
-    opacity: 0.6;
-  }
-  
-  .tarea input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  .tarea button {
-    border: none;
-    cursor: pointer;
-    background: none;
-    font-size: 1.2rem;
-  }
-  
-  .tarea button.actualizar {
-    background-color: #00FF00;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-  
-  .tarea button.actualizar:hover {
-    background-color: #7EFF2A;
-  }
-  
-  .tarea button.editar {
-    background-color: transparent;
-    border: none;
-    padding: 6px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .tarea button.editar:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-  
-  .tarea button.eliminar {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 6px;
-  }
-  
-  .tarea button.eliminar:hover {
-    color: red;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.tarea-contenido {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  position: relative; 
+  gap: 8px; /* Espacio entre el checkbox y el texto */
+}
+
+/* El checkbox */
+.tarea-contenido input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Texto en modo no edición */
+.texto-tarea {
+  font-size: 16px;
+}
+
+/* Botones (editar, eliminar...) */
+.tarea-botones {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.tarea-botones button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: gray;
+  padding: 5px;
+}
+
+/* ---------------------------
+   BOTÓN ACTUALIZAR (VERDE)
+   --------------------------- */
+  .tarea-botones .actualizar {
+  background-color: #80BE4E; /* Verde por defecto */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  display: none; /* Solo se muestra si .tarea tiene la clase .editando */
+}
+
+.tarea-botones .actualizar:hover {
+  background-color: #6EA43D; /* Un poco más oscuro */
+}
+
+.tarea.editando .actualizar {
+  display: inline-block; 
+}
+
+/* ---------------------------
+   MODO EDICIÓN
+   --------------------------- */
+/* Quita la línea de debajo del input (border-bottom) */
+.tarea.editando .tarea-contenido input[type="text"] {
+  width: auto;
+  border: none;     /* <-- Sin borde */
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Dibuja una sola línea “por encima” (o justo debajo) del texto */
+.tarea.editando .tarea-contenido::after {
+  content: "";
+  position: absolute;
+  bottom: 0;      /* La línea se dibuja al fondo del contenedor */
+  left: 30px;     /* Ajusta donde inicia la línea */
+  right: 20px;    /* Se extiende casi hasta el borde derecho */
+  height: 2px;
+  background-color: gray;
+  z-index: 1;     /* Detrás del texto (que está en z-index: 2) */
+}
+

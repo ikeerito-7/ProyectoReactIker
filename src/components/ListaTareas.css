@@ -1,3 +1,9 @@
 .lista-tareas {
-    margin-top: 15px;
-  }
+  margin-top: 20px; /* Ajusta la separación entre el formulario y la lista */
+}
+
+.no-tareas {
+  padding: 20px;
+  font-style: italic;
+  color: #777;
+}

@@ -3,55 +3,59 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './Tarea.css';
 
-function Tarea({ tarea, actualizarTarea, eliminarTarea, completarTarea }) {
+function Tarea({ tarea, editarTarea, eliminarTarea, completarTarea }) {
   const [editando, setEditando] = useState(false);
   const [texto, setTexto] = useState(tarea.texto);
 
-  const handleActualizar = () => {
-    actualizarTarea(tarea.id, texto);
-    setEditando(false);
+  // Cada vez que se escribe en el input, actualizamos el estado 'texto'
+  const handleChange = (e) => {
+    setTexto(e.target.value);
   };
 
-  const handleInput = (e) => {
-    // Cada vez que el usuario escribe, actualizamos el estado con el texto del span
-    setTexto(e.currentTarget.textContent);
+  // Guardamos los cambios y cerramos modo edición
+  const handleActualizar = () => {
+    if (texto.trim() !== '') {
+      editarTarea(tarea.id, texto); // <--- Llamamos a 'editarTarea', no 'actualizarTarea'
+    }
+    setEditando(false);
   };
 
   return (
     <div className={`tarea ${editando ? 'editando' : ''} ${tarea.completada ? 'completada' : ''}`}>
+      
       <div className="tarea-contenido">
-
         <input
           type="checkbox"
           checked={tarea.completada}
           onChange={() => completarTarea(tarea.id)}
         />
 
-
-        <span
-          className="texto-tarea"
-          contentEditable={editando}
-          suppressContentEditableWarning
-          onInput={handleInput}
-        >
-          {texto}
-        </span>
+        {/* Modo edición vs no edición */}
+        {editando ? (
+          <input
+            type="text"
+            value={texto}
+            onChange={handleChange}
+            className="texto-input"
+          />
+        ) : (
+          <span className="texto-tarea">
+            {texto}
+          </span>
+        )}
       </div>
 
       <div className="tarea-botones">
-        {/* Botón Actualizar solo aparece en modo edición */}
         {editando && (
           <button className="actualizar" onClick={handleActualizar}>
             Actualizar
           </button>
         )}
 
-        {/* Botón de editar: activa el modo edición */}
         <button className="editar" onClick={() => setEditando(true)}>
           <FontAwesomeIcon icon={faPen} />
         </button>
 
-        {/* Botón para eliminar la tarea */}
         <button className="eliminar" onClick={() => eliminarTarea(tarea.id)}>
           <FontAwesomeIcon icon={faTrash} />
         </button>

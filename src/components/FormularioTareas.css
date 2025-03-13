@@ -1,28 +1,34 @@
 .formulario {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px;
-    background-color: white;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .formulario input {
-    width: 85%;
-    padding: 8px;
-    border: 1px solid gray;
-    border-radius: 4px;
-  }
-  
-  .formulario button {
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .formulario button:hover {
-    background-color: green;
-  }
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Opcional: align-items center para alinear verticalmente */
+  align-items: center;
+}
+
+.formulario input {
+  /* Ajusta el ancho para acortar la línea */
+  width: 80%;
+  border: none;
+  border-bottom: 2px solid gray;
+  outline: none;
+  background: transparent;
+  padding: 8px 0;
+  font-size: 16px;
+}
+
+.formulario button {
+  background-color: #80BE4E;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.formulario button:hover {
+  background-color: #6EA43D;
+}

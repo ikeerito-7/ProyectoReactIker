@@ -1,22 +1,34 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: blue;
-    color: white;
-    padding: 15px;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  .header button {
-    background-color: #007AFF;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  .header button:hover {
-    background-color: #00AAFF;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #007bff; /* Azul de fondo */
+  color: white;
+  padding: 15px;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Clase específica para el botón que filtra completadas */
+.boton-filtro {
+  background-color: #0056b3; /* Color azul más oscuro para el botón */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+
+  /* Para alinear ícono y texto */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Hover un poco más oscuro */
+.boton-filtro:hover {
+  background-color: #004085;
+}
+
+/* Ajusta el tamaño del ícono si lo deseas */
+.icono-ojo {
+  font-size: 16px; 
+}
