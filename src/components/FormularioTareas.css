@@ -1,12 +1,12 @@
 .formulario {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
-  background-color: white;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* Opcional: align-items center para alinear verticalmente */
   align-items: center;
+  padding: 10px 15px;
+  background-color: white;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0;
 }
 
 .formulario input {
@@ -27,6 +27,7 @@
   padding: 8px 12px;
   cursor: pointer;
   border-radius: 4px;
+  font-size: 16px;
 }
 
 .formulario button:hover {

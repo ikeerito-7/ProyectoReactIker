@@ -1,14 +1,43 @@
-/* --- Tarea.css --- */
 .tarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  margin: 0;
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: none;
+  border-radius: 0;
 }
+
+/* Si la tarea está completada, aplicamos el gris */
+.tarea.completada {
+  background-color: #f2f2f2;
+}
+
+/* La última tarea redondea la parte inferior si quieres ese efecto */
+.tarea:last-child {
+  border-bottom: none;
+  border-radius: 0 0 8px 8px;
+}
+
+
+.tarea:last-child {
+  border-bottom: none;
+  border-radius: 0 0 8px 8px;
+}
+
+.tarea.completada {
+  background-color: #f2f2f2; /* Gris muy claro para un efecto de oscurecimiento */
+}
+
+/* Cuando la tarea tenga la clase "completada", ocultar todos los botones */
+.tarea.completada .tarea-botones {
+  display: none;
+}
+
 
 .tarea-contenido {
   display: flex;

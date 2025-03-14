@@ -1,6 +1,9 @@
 .lista-tareas {
-  margin-top: 20px; /* Ajusta la separación entre el formulario y la lista */
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
 }
+
 
 .no-tareas {
   padding: 20px;
