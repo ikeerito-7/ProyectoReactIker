@@ -7,7 +7,6 @@
   padding: 10px 15px;
   margin: 0;
   background-color: white;
-  border-bottom: 1px solid #ddd;
   box-shadow: none;
   border-radius: 0;
 }
@@ -17,7 +16,7 @@
   background-color: #f2f2f2;
 }
 
-/* La última tarea redondea la parte inferior si quieres ese efecto */
+/* La última tarea redondea la parte*/
 .tarea:last-child {
   border-bottom: none;
   border-radius: 0 0 8px 8px;
@@ -38,6 +37,16 @@
   display: none;
 }
 
+.tarea.editando .texto-input {
+  width: auto;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+
 
 .tarea-contenido {
   display: flex;
@@ -54,7 +63,6 @@
   margin-bottom: 10px;
   padding: 8px;
 }
-
 /* El checkbox */
 .tarea-contenido input[type="checkbox"] {
   width: 20px;
@@ -84,9 +92,6 @@
   padding: 5px;
 }
 
-/* ---------------------------
-   BOTÓN ACTUALIZAR (VERDE)
-   --------------------------- */
   .tarea-botones .actualizar {
   background-color: #80BE4E; /* Verde por defecto */
   color: white;
@@ -106,30 +111,26 @@
   display: inline-block; 
 }
 
-/* ---------------------------
-   MODO EDICIÓN
-   --------------------------- */
 /* Quita la línea de debajo del input (border-bottom) */
 .tarea.editando .tarea-contenido input[type="text"] {
   width: auto;
-  border: none;     /* <-- Sin borde */
+  border: none;
   outline: none;
-  background: transparent;
   font-size: 16px;
   position: relative;
   z-index: 2;
+  border-radius: 4px;
 }
-
 /* Dibuja una sola línea “por encima” (o justo debajo) del texto */
 .tarea.editando .tarea-contenido::after {
   content: "";
   position: absolute;
-  bottom: 0;      /* La línea se dibuja al fondo del contenedor */
-  left: 30px;     /* Ajusta donde inicia la línea */
-  right: 20px;    /* Se extiende casi hasta el borde derecho */
+  bottom: 0;      
+  left: 30px;    
+  right: 20px;    
   height: 2px;
   background-color: gray;
-  z-index: 1;     /* Detrás del texto (que está en z-index: 2) */
-}
+  z-index: 1;     
+} 
 
 

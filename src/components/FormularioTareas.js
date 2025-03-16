@@ -1,44 +1,50 @@
-import React, { useState } from 'react'; // Importamos React y el hook useState
-import './FormularioTareas.css'; // Importamos los estilos específicos del formulario
+// Importa React y el hook useState para manejar el estado local.
+import React, { useState } from 'react';
+
+// Importa los estilos específicos para este formulario.
+import './FormularioTareas.css';
 
 /**
  * Componente FormularioTareas
- * Se encarga de capturar el texto ingresado por el usuario y enviarlo a la función agregarTarea.
+ * Permite al usuario escribir y agregar una nueva tarea.
  *
- * Props:
- * - agregarTarea: Función que se ejecuta al enviar el formulario para agregar una nueva tarea.
+ * @param {Object} props - Propiedades del componente.
+ * @param {function} props.agregarTarea - Función para agregar una nueva tarea.
  */
 function FormularioTareas({ agregarTarea }) {
-  // Estado local para almacenar el texto de la nueva tarea
+  // Estado local para almacenar el texto del input.
   const [texto, setTexto] = useState('');
 
   /**
-   * Función manejarEnvio
-   * Se ejecuta cuando el usuario envía el formulario.
-   * Previene el comportamiento por defecto del formulario y agrega la tarea si el texto no está vacío.
+   * manejarEnvio:
+   * Previene el comportamiento por defecto del formulario y, si el texto no está vacío,
+   * llama a la función agregarTarea y luego limpia el campo.
+   * @param {Event} e - Evento submit del formulario.
    */
   const manejarEnvio = (e) => {
-    e.preventDefault(); // Evita que la página se recargue
-    if (texto.trim() !== '') { // Verifica que el campo no esté vacío
-      agregarTarea(texto); // Llama a la función agregarTarea con el texto ingresado
-      setTexto(''); // Resetea el campo de texto después de agregar la tarea
+    e.preventDefault(); // Evita que se recargue la página.
+    if (texto.trim() !== '') {
+      agregarTarea(texto); // Agrega la tarea.
+      setTexto('');        // Limpia el input.
     }
   };
 
   return (
     <form onSubmit={manejarEnvio} className="formulario">
-      {/* Campo de entrada donde el usuario escribe la tarea */}
-      <input 
-        type="text" 
-        value={texto} 
-        onChange={(e) => setTexto(e.target.value)} 
-        placeholder="Escribe una tarea" 
-      />
-      
-      {/* Botón para enviar la tarea */}
+      <div className="input-wrapper">
+        {/* Campo de texto controlado por el estado "texto" */}
+        <input 
+          type="text" 
+          value={texto} 
+          onChange={(e) => setTexto(e.target.value)} 
+          placeholder="Escribe una tarea" 
+        />
+      </div>
+      {/* Botón para enviar el formulario */}
       <button type="submit">+</button>
     </form>
   );
 }
 
+// Exporta el componente.
 export default FormularioTareas;

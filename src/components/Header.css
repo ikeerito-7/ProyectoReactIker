@@ -4,7 +4,7 @@
   align-items: center;
   background-color: #007bff; /* Azul de fondo */
   color: white;
-  padding: 15px;
+  padding: 8px;
   border-radius: 8px 8px 0 0;
 }
 
@@ -26,9 +26,4 @@
 /* Hover un poco más oscuro */
 .boton-filtro:hover {
   background-color: #004085;
-}
-
-/* Ajusta el tamaño del ícono si lo deseas */
-.icono-ojo {
-  font-size: 16px; 
 }

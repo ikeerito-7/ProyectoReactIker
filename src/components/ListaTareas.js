@@ -1,33 +1,37 @@
+// Importa React para poder usar JSX.
 import React from 'react';
-import Tarea from './Tarea'; // Importa el componente Tarea para renderizar cada tarea individual
-import './ListaTareas.css'; // Importa los estilos específicos para la lista de tareas
+
+// Importa el componente Tarea, que representa cada tarea individual.
+import Tarea from './Tarea';
+
+// Importa los estilos específicos para la lista de tareas.
+import './ListaTareas.css';
 
 /**
  * Componente ListaTareas
- * Se encarga de mostrar la lista de tareas filtradas según si se quieren ver las completadas o no.
+ * Muestra las tareas filtradas y se encarga de renderizar cada una de ellas.
  *
- * Props:
- * - tareas: Array de objetos de tarea (cada objeto tiene id, texto y completada)
- * - mostrarCompletadas: Booleano que indica si se deben mostrar todas las tareas o solo las pendientes.
- * - completarTarea: Función para alternar el estado completado de una tarea.
- * - editarTarea: Función para actualizar el texto de una tarea.
- * - eliminarTarea: Función para borrar una tarea.
+ * @param {Object} props - Propiedades del componente.
+ * @param {Array} props.tareas - Array de objetos tarea (cada uno con id, texto y completada).
+ * @param {boolean} props.mostrarCompletadas - Indica si se deben mostrar las tareas completadas.
+ * @param {function} props.completarTarea - Función para marcar/desmarcar una tarea como completada.
+ * @param {function} props.editarTarea - Función para actualizar el texto de una tarea.
+ * @param {function} props.eliminarTarea - Función para eliminar una tarea.
  */
 function ListaTareas({
   tareas,
   mostrarCompletadas,
   completarTarea,
-  editarTarea,       // Recibimos la prop "editarTarea"
+  editarTarea,
   eliminarTarea
 }) {
-  // Filtramos las tareas:
-  // Si mostrarCompletadas es true, se muestran todas las tareas.
-  // Si es false, solo se muestran las tareas que NO están completadas.
+  // Filtra las tareas:
+  // Si mostrarCompletadas es true, se muestran todas; si es false, solo las pendientes.
   const tareasFiltradas = tareas.filter((tarea) =>
     mostrarCompletadas ? true : !tarea.completada
   );
 
-  // Si no hay tareas después del filtrado, mostramos un mensaje indicativo
+  // Si no hay tareas que mostrar, renderiza un mensaje.
   if (tareasFiltradas.length === 0) {
     return (
       <div className="lista-tareas no-tareas">
@@ -36,20 +40,21 @@ function ListaTareas({
     );
   }
 
-  // Si hay tareas, las renderizamos dentro de un contenedor con la clase "lista-tareas"
+  // Renderiza cada tarea usando el componente Tarea.
   return (
     <div className="lista-tareas">
       {tareasFiltradas.map((tarea) => (
         <Tarea
-          key={tarea.id} // Cada tarea debe tener una key única para ayudar a React con la renderización
-          tarea={tarea} // Pasamos la tarea completa para que el componente Tarea muestre su información
-          completarTarea={completarTarea} // Función para marcar/desmarcar la tarea como completada
-          editarTarea={editarTarea}       // Función para actualizar el texto de la tarea
-          eliminarTarea={eliminarTarea}   // Función para eliminar la tarea
+          key={tarea.id}               // Cada tarea necesita una key única para optimizar la renderización.
+          tarea={tarea}                // Pasa la información completa de la tarea.
+          completarTarea={completarTarea} // Función para alternar el estado completado.
+          editarTarea={editarTarea}       // Función para editar la tarea.
+          eliminarTarea={eliminarTarea}   // Función para eliminar la tarea.
         />
       ))}
     </div>
   );
 }
 
+// Exporta el componente para su uso en otros archivos.
 export default ListaTareas;
