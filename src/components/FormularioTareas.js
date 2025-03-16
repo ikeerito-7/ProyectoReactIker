@@ -1,50 +1,48 @@
 // Importa React y el hook useState para manejar el estado local.
 import React, { useState } from 'react';
-
-// Importa los estilos específicos para este formulario.
 import './FormularioTareas.css';
 
 /**
  * Componente FormularioTareas
- * Permite al usuario escribir y agregar una nueva tarea.
- *
- * @param {Object} props - Propiedades del componente.
- * @param {function} props.agregarTarea - Función para agregar una nueva tarea.
+ * - Permite al usuario ingresar una nueva tarea mediante un input.
  */
 function FormularioTareas({ agregarTarea }) {
   // Estado local para almacenar el texto del input.
   const [texto, setTexto] = useState('');
 
   /**
-   * manejarEnvio:
-   * Previene el comportamiento por defecto del formulario y, si el texto no está vacío,
-   * llama a la función agregarTarea y luego limpia el campo.
-   * @param {Event} e - Evento submit del formulario.
+   * Maneja el envío del formulario.
+   * - Previene el comportamiento por defecto.
+   * - Valida el input y, si es correcto, llama a agregarTarea y limpia el input.
    */
   const manejarEnvio = (e) => {
-    e.preventDefault(); // Evita que se recargue la página.
+    e.preventDefault();
     if (texto.trim() !== '') {
-      agregarTarea(texto); // Agrega la tarea.
-      setTexto('');        // Limpia el input.
+      agregarTarea(texto);
+      setTexto('');
     }
   };
 
   return (
     <form onSubmit={manejarEnvio} className="formulario">
-      <div className="input-wrapper">
-        {/* Campo de texto controlado por el estado "texto" */}
-        <input 
-          type="text" 
-          value={texto} 
-          onChange={(e) => setTexto(e.target.value)} 
-          placeholder="Escribe una tarea" 
-        />
-      </div>
-      {/* Botón para enviar el formulario */}
-      <button type="submit">+</button>
-    </form>
+      {/* Div contenedor para agrupar el input, lo que permite aplicar estilos específicos */}
+    <div className="input-wrapper">
+      {/* Input de tipo texto:
+         - El valor del input está ligado al estado "texto".
+         - Cada vez que se escribe en el input, se actualiza el estado "texto" con el valor ingresado.
+         - Texto de guía que se muestra cuando el campo está vacío. */}
+      <input 
+        type="text" 
+        value={texto} 
+        onChange={(e) => setTexto(e.target.value)} 
+        placeholder="Escribe una tarea" 
+      />
+    </div>
+      {/* Botón para enviar el formulario. Al pulsarlo se ejecuta la función "manejarEnvio" definida en el onSubmit del formulario. */}
+  <button type="submit">+</button>
+</form>
+
   );
 }
 
-// Exporta el componente.
 export default FormularioTareas;

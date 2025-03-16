@@ -1,34 +1,23 @@
-// Importa React y el hook useState para manejar estados locales.
+// Importa React y useState para gestionar estados locales.
 import React, { useState } from 'react';
-
-// Importa el componente para mostrar iconos y los iconos que se usarán.
+// Importa FontAwesome para utilizar íconos en los botones.
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
-
-// Importa los estilos específicos para la tarea.
 import './Tarea.css';
 
 /**
  * Componente Tarea
- * Representa una tarea individual con opciones para completar, editar y eliminar.
- *
- * @param {Object} props - Propiedades del componente.
- * @param {Object} props.tarea - Objeto con {id, texto, completada}.
- * @param {function} props.editarTarea - Función para actualizar el texto de la tarea.
- * @param {function} props.eliminarTarea - Función para eliminar la tarea.
- * @param {function} props.completarTarea - Función para marcar o desmarcar la tarea como completada.
+ * - Representa una tarea individual y permite editar, actualizar, marcar como completada o eliminar la tarea.
  */
 function Tarea({ tarea, editarTarea, eliminarTarea, completarTarea }) {
-  // Estado local para controlar si la tarea está en modo edición.
+  // Estado local que indica si la tarea está en modo edición.
   const [editando, setEditando] = useState(false);
-  // Estado local para almacenar el texto de la tarea (utilizado en modo edición).
+  // Estado local para almacenar el texto de la tarea en modo edición.
   const [texto, setTexto] = useState(tarea.texto);
 
   /**
    * handleChange:
-   * Se ejecuta cada vez que el usuario escribe en el input de edición.
-   * Actualiza el estado "texto" con el valor ingresado.
-   * @param {Event} e - Evento onChange del input.
+   * - Actualiza el estado "texto" cada vez que el usuario escribe en el input de edición.
    */
   const handleChange = (e) => {
     setTexto(e.target.value);
@@ -36,8 +25,8 @@ function Tarea({ tarea, editarTarea, eliminarTarea, completarTarea }) {
 
   /**
    * handleActualizar:
-   * Se ejecuta cuando el usuario desea actualizar el texto de la tarea.
-   * Verifica que el texto no esté vacío, llama a la función editarTarea y sale del modo edición.
+   * - Valida el texto y, si es correcto, llama a editarTarea para actualizar el contenido de la tarea.
+   * - Sale del modo edición.
    */
   const handleActualizar = () => {
     if (texto.trim() !== '') {
@@ -47,25 +36,17 @@ function Tarea({ tarea, editarTarea, eliminarTarea, completarTarea }) {
   };
 
   return (
-    // Aplica clases condicionales:
-    // - "editando" si la tarea está en modo edición.
-    // - "completada" si la tarea está marcada como completada.
+    // Aplica clases condicionales según si se está en modo edición o si la tarea está completada.
     <div className={`tarea ${editando ? 'editando' : ''} ${tarea.completada ? 'completada' : ''}`}>
-      
-      {/* Contenedor para el checkbox y el texto o input de edición */}
       <div className="tarea-contenido">
-        {/* Checkbox para marcar o desmarcar la tarea como completada */}
+        {/* Checkbox para alternar el estado "completada" de la tarea */}
         <input
           type="checkbox"
           checked={tarea.completada}
           onChange={() => completarTarea(tarea.id)}
         />
-
-        {/*
-          Si estamos en modo edición, muestra un input controlado.
-          Si no, muestra el texto de la tarea en un <span>.
-        */}
         {editando ? (
+          // Si la tarea está en modo edición, se muestra un input controlado.
           <input
             type="text"
             value={texto}
@@ -73,26 +54,23 @@ function Tarea({ tarea, editarTarea, eliminarTarea, completarTarea }) {
             className="texto-input"
           />
         ) : (
+          // Si no, se muestra el texto de la tarea en un span.
           <span className="texto-tarea">
             {texto}
           </span>
         )}
       </div>
-
-      {/* Contenedor para los botones de acciones */}
       <div className="tarea-botones">
         {editando && (
-          // Muestra el botón "Actualizar" solo en modo edición.
+          // Botón "Actualizar", visible solo en modo edición.
           <button className="actualizar" onClick={handleActualizar}>
             Actualizar
           </button>
         )}
-
         {/* Botón para activar el modo edición */}
         <button className="editar" onClick={() => setEditando(true)}>
           <FontAwesomeIcon icon={faPen} />
         </button>
-
         {/* Botón para eliminar la tarea */}
         <button className="eliminar" onClick={() => eliminarTarea(tarea.id)}>
           <FontAwesomeIcon icon={faTrash} />
@@ -102,5 +80,4 @@ function Tarea({ tarea, editarTarea, eliminarTarea, completarTarea }) {
   );
 }
 
-// Exporta el componente.
 export default Tarea;
